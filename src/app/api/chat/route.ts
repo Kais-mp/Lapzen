@@ -62,7 +62,10 @@ Guidelines:
       max_tokens: 1024,
     });
 
-    const response = completion.choices[0]?.message?.content;
+    const rawResponse = completion.choices[0]?.message?.content || "";
+    const response = rawResponse
+      .replace(/<think>[\s\S]*?<\/think>/gi, "")
+      .trim();
 
     // Extract product IDs mentioned in the response to send product data
     const productIds = response?.match(/\[PRODUCT_CARD:([a-f0-9-]{36})\]/g)?.map(match => match.split(':')[1].replace(']', '')) || [];
