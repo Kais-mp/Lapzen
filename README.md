@@ -100,7 +100,8 @@ The SMTP integration gracefully skips delivery when SMTP credentials are absent,
 - Product cards and detail views expose pricing, specs, images, stock state, variants, and applicable coupons.
 - Cart state is shared through the React cart context and presented in a global cart sidebar.
 <img width="1365" height="727" alt="Capture1" src="https://github.com/user-attachments/assets/e0a7eea7-1472-47fb-b279-64f0dd9deef1" />
-### Checkout and orders
+
+## Checkout and orders
 
 
 - Stripe Payment Intent creation through `/api/create-payment-intent`, using PKR and a minimum amount of Rs. 150.
@@ -110,7 +111,7 @@ The SMTP integration gracefully skips delivery when SMTP credentials are absent,
 - Order confirmation emails with item summaries, totals, payment method, delivery address, and support details.
 - Purchase and content-view events can be sent to Meta Pixel and Meta CAPI.
 
-### Coupons
+## Coupons
 
 Coupons can be attached to one or more products or applied globally. Supported discount types are percentage, fixed amount, and free shipping. Validation includes:
 
