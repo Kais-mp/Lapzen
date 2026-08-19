@@ -93,6 +93,9 @@ The SMTP integration gracefully skips delivery when SMTP credentials are absent,
 
 - Homepage sections for featured products, new arrivals, brands, categories, popular series, FAQs, and blog posts.
 - Catalog, search, brand, series, and collection routes for targeted browsing.
+- Header search suggestions appear after two characters, with a short debounce to avoid unnecessary requests.
+- Suggestions combine matching brands, series, and categories with up to five product matches from `/api/products`.
+- Users can select a suggestion directly or continue to the complete search results page for the entered query.
 - Product pages generated from database records using slugified titles.
 - Product cards and detail views expose pricing, specs, images, stock state, variants, and applicable coupons.
 - Cart state is shared through the React cart context and presented in a global cart sidebar.
