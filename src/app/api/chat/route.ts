@@ -56,7 +56,7 @@ Guidelines:
     };
 
     const completion = await groq.chat.completions.create({
-      model: "qwen/qwen3.6-27b",
+      model: "openai/gpt-oss-120b",
       messages: [systemMessage, ...messages],
       temperature: 0.7,
       max_tokens: 1024,
