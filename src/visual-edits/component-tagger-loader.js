@@ -270,7 +270,7 @@ const dreiElems = [
     "OrbitControls"
 ];
 const shouldTag = (name) => !threeFiberElems.includes(name) && !dreiElems.includes(name);
-// ➕ Collect aliases of the Next.js <Image> component so we can reliably tag it even if it was renamed.
+// Collect aliases of the Next.js <Image> component so we can reliably tag it even if it was renamed.
 const isNextImageAlias = (aliases, name) => aliases.has(name);
 const extractLiteralValue = (node) => {
     if (!node)
@@ -426,7 +426,7 @@ function componentTagger(src, map) {
                 if (mapContext) {
                     orchidsId += `@${mapContext.arrayName}`;
                 }
-                // 🔍 Append referenced variable locations for simple identifier references in props
+                // Append referenced variable locations for simple identifier references in props
                 (_a = node.attributes) === null || _a === void 0 ? void 0 : _a.forEach((attr) => {
                     var _a, _b;
                     if (attr.type === 'JSXAttribute' &&
@@ -439,7 +439,7 @@ function componentTagger(src, map) {
                         }
                     }
                 });
-                // 📍 If inside a map context and we have an index variable, inject data-map-index
+                // If inside a map context and we have an index variable, inject data-map-index
                 if (mapContext === null || mapContext === void 0 ? void 0 : mapContext.indexVarName) {
                     ms.appendLeft(node.name.end, ` data-map-index={${mapContext.indexVarName}}`);
                 }

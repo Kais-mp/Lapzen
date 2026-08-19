@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Upload, X, Loader2, Plus, Edit, Trash2, GripHorizontal, Search, ChevronDown, Settings2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Upload, X, Loader2, Plus, Edit, Trash2, GripHorizontal, Search, ChevronDown, Settings2, ChevronLeft, ChevronRight, AlertCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { applyWatermark } from "@/lib/image-utils";
 import { CATEGORIES } from "@/lib/constants";
@@ -189,7 +189,7 @@ function LaptopForm({
     <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl mb-12 border border-slate-100 shadow-xl shadow-slate-200/50 animate-in slide-in-from-top-4 duration-300">
       {submitError && (
         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl">
-          <p className="text-sm font-bold text-red-600">❌ Error: {submitError}</p>
+          <p className="text-sm font-bold text-red-600 flex items-center gap-2"><AlertCircle className="h-4 w-4" aria-hidden="true" /> Error: {submitError}</p>
           <p className="text-xs text-red-500 mt-1">Check the browser console for more details.</p>
         </div>
       )}

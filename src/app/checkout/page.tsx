@@ -117,9 +117,9 @@ function LocalCheckoutForm({
         
         const message = encodeURIComponent(
           `Hello! I want to place an order on Lapzen.\n\n` +
-          `📦 Order Items:\n` +
+          `Order Items:\n` +
           `${productDetails}\n\n` +
-          `📋 Customer Details:\n` +
+          `Customer Details:\n` +
           `Name: ${customerDetails.name}\n` +
           `Email: ${customerDetails.email}\n` +
           `Phone: ${customerDetails.phone}\n` +
