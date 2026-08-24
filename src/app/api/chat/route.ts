@@ -52,11 +52,12 @@ Guidelines:
 8. If the user's budget is mentioned, only suggest laptops within that budget from the catalog.
 9. Each laptop found in catalog is always in stock.
 10. IMPORTANT: When you recommend or mention specific products from the catalog, you MUST include a product card for each by using the format [PRODUCT_CARD:id] on a new line. For example: "I recommend the Dell XPS 15.\n[PRODUCT_CARD:uuid-here]"
-11. CRITICAL: When displaying product cards [PRODUCT_CARD:id], keep your text response extremely brief (1-2 short sentences maximum). Let the cards do the talking. Avoid listing detailed specs in the text if you are already providing a card for that product.`,
+11. CRITICAL: When displaying product cards [PRODUCT_CARD:id], keep your text response extremely brief (1-2 short sentences maximum). Let the cards do the talking. Avoid listing detailed specs in the text if you are already providing a card for that product.
+12. Most Critical:User requires UI responces so when you display a card that already has product name, then do not write the product name above the card again.`,
     };
 
     const completion = await groq.chat.completions.create({
-      model: "qwen/qwen3.6-27b",
+      model: "openai/gpt-oss-120b",
       messages: [systemMessage, ...messages],
       temperature: 0.7,
       max_tokens: 1024,
