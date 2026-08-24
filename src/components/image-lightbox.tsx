@@ -24,9 +24,10 @@ export function ImageLightbox({ isOpen, onClose, imageSrc, altText }: ImageLight
             src={imageSrc}
             alt={altText}
             fill
+            sizes="100vw"
+            quality={85}
             className="object-contain"
             priority
-            unoptimized={imageSrc.startsWith('http')}
           />
         </div>
       </DialogContent>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, BookOpen, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -97,10 +98,13 @@ export function BlogPostsSection() {
               >
                   <div className="aspect-[16/10] relative overflow-hidden bg-slate-100">
                       {post.image_url ? (
-                        <img
+                        <Image
                           src={post.image_url}
                           alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          quality={75}
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-navy/5 to-blue-500/10">

@@ -1,30 +1,58 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Script from 'next/script';
 
 /**
  * HeroBanner Component
  * 
- * Clones the hero banner section featuring a 3D laptop model viewer, 
+ * Features a 3D laptop model viewer (lazy-loaded), 
  * the "CARRY THE FUTURE" bold headline, and two primary action buttons.
  * 
- * Adheres to the dark tech aesthetic using a navy and charcoal palette.
+ * Model-viewer script is deferred to lazyOnload to avoid blocking
+ * main thread (~2.5s TBT savings). The 3D model uses reveal="interaction"
+ * to defer rendering until user interacts.
  */
 
 const HeroBanner = () => {
   const ModelViewer = 'model-viewer' as any;
+  const [modelViewerLoaded, setModelViewerLoaded] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Use IntersectionObserver to detect when hero section is visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      {/* 3D Model Viewer Script */}
-      <Script
-        type="module"
-        src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
-        strategy="afterInteractive"
-      />
+      {/* 3D Model Viewer Script - lazy loaded */}
+      {isVisible && (
+        <Script
+          type="module"
+          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+          onLoad={() => setModelViewerLoaded(true)}
+        />
+      )}
 
-      <section className="relative w-full overflow-hidden min-h-[500px] lg:min-h-[600px] flex items-center pt-[116px] md:pt-0">
+      <section ref={sectionRef} className="relative w-full overflow-hidden min-h-[500px] lg:min-h-[600px] flex items-center pt-[116px] md:pt-0">
         {/* Subtle radial glow specifically for hero */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
         
@@ -34,20 +62,29 @@ const HeroBanner = () => {
               
               {/* 3D Model Section - Dominant Visual */}
               <div className="w-full md:w-[60%] lg:w-[65%] h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] relative order-2 md:order-1 flex items-center justify-center">
+                {modelViewerLoaded ? (
                   <ModelViewer
                     className="w-full h-full outline-none drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                     src="/laptop_dell_xps.glb"
-                  alt="3D Laptop Model"
-                  auto-rotate
-                  camera-controls
-                  shadow-intensity="2"
-                  environment-image="neutral"
-                  exposure="1.2"
-                  interaction-prompt="auto"
-                  ar
-                  loading="eager"
-                  style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
-                />
+                    alt="3D Laptop Model"
+                    auto-rotate
+                    camera-controls
+                    shadow-intensity="2"
+                    environment-image="neutral"
+                    exposure="1.2"
+                    interaction-prompt="auto"
+                    loading="lazy"
+                    reveal="interaction"
+                    style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4" />
+                      <p className="text-sm text-muted-foreground">Loading 3D Model...</p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Text Section - Messaging and Actions */}

@@ -290,9 +290,10 @@ export function ProductDetails({
                 src={images[selectedImage]}
                 alt={product.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={80}
                 className="object-contain"
                 priority
-                unoptimized={images[selectedImage].startsWith("http")}
               />
             </div>
             <button
@@ -324,8 +325,9 @@ export function ProductDetails({
                     src={img}
                     alt={`${product.title} ${idx + 1}`}
                     fill
+                    sizes="80px"
+                    quality={60}
                     className="object-contain p-2"
-                    unoptimized={img.startsWith("http")}
                   />
                 </button>
               ))}

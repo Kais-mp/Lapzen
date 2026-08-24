@@ -98,9 +98,9 @@ export default function RootLayout({
           {/* Google Tag (GTM) */}
           <Script
           src="https://www.googletagmanager.com/gtag/js?id=GT-MK952CKJ"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-tag" strategy="afterInteractive">
+        <Script id="google-tag" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -118,34 +118,12 @@ export default function RootLayout({
         <MetaPixel />
         <ErrorReporter />
 
-        <Script
-          src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts/route-messenger.js"
-          strategy="afterInteractive"
-          data-target-origin="*"
-          data-message-type="ROUTE_CHANGE"
-          data-include-search-params="true"
-          data-only-in-iframe="true"
-          data-debug="true"
-          data-custom-data='{"appName":"YourApp","version":"1.0.0","greeting":"hi"}'
-        />
-
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
 
 
 <CartProvider>
              
-
-              <Script
-                src="https://ojvgpgjokyjriesqkncz.supabase.co/storage/v1/object/public/scripts/route-messenger.js"
-                strategy="afterInteractive"
-                data-target-origin="*"
-                data-message-type="ROUTE_CHANGE"
-                data-include-search-params="true"
-                data-only-in-iframe="true"
-                data-debug="true"
-                data-custom-data='{"appName":"YourApp","version":"1.0.0","greeting":"hi"}'
-              />
 
                 {children}
                 <Chatbot />

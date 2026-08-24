@@ -221,20 +221,22 @@ export function ProductCard({ product }: ProductCardProps) {
             src={image}
             alt={title}
             fill
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1536px) 20vw, 17vw"
+            quality={75}
             className={`object-contain transition-all duration-500 p-1 sm:p-2 ${
               secondImage
                 ? "group-hover:opacity-0"
                 : "group-hover:scale-105"
             }`}
-            unoptimized={image.startsWith("http")}
           />
           {secondImage && (
             <Image
               src={secondImage}
               alt={`${title} - Alternate View`}
               fill
+              sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1536px) 20vw, 17vw"
+              quality={75}
               className="object-contain transition-all duration-500 p-1 sm:p-2 opacity-0 group-hover:opacity-100 group-hover:scale-105"
-              unoptimized={secondImage.startsWith("http")}
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-navy/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
