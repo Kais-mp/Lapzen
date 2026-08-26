@@ -25,12 +25,12 @@ const AnnouncementBar = () => {
           )}
         </div>
       </div>
-      <a
-        href="#"
+      <Link
+        href="/catalog"
         className="text-[#00172E] bg-white text-[12px] rounded-[10px] hover:text-white hover:bg-[#00172E] font-bold underline ml-4 hover:opacity-80 transition-opacity whitespace-nowrap z-10">
 
         Shop now!
-      </a>
+      </Link>
     </div>);
 
 };

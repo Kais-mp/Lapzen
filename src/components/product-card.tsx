@@ -251,6 +251,7 @@ export function ProductCard({ product }: ProductCardProps) {
               }}
               size="icon"
               variant="secondary"
+              aria-label="View product gallery"
               className="w-7 h-7 sm:w-8 sm:h-8 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-md translate-y-[-10px] group-hover:translate-y-0"
             >
               <Maximize2 className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -259,7 +260,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Coupon label badge */}
           {catalogCoupon && (
-            <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-emerald-500 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-md z-10 pointer-events-none">
+            <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-emerald-700 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-md z-10 pointer-events-none">
               <Tag className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
               Coupon Applicable
             </div>
@@ -267,7 +268,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Discount badge */}
           {hasProductDiscount && (
-            <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 flex items-center gap-1 bg-red-500 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-md z-10 pointer-events-none">
+            <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 flex items-center gap-1 bg-red-700 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-md z-10 pointer-events-none">
               <Tag className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
               {product.discount_type === "percentage" ? `${product.discount_value}% OFF` : `Rs. ${product.discount_value} OFF`}
             </div>
@@ -277,6 +278,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <Button
             onClick={handleAddToCartClick}
             size="sm"
+            aria-label={`Add ${title} to cart`}
             className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg text-[10px] sm:text-xs h-7 sm:h-8 px-2 sm:px-3"
           >
             <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
@@ -289,12 +291,12 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="p-2 sm:p-4 bg-gray-50">
           <div className="flex items-center gap-1 sm:gap-2 mb-1">
             {product.category && (
-              <span className="text-[8px] sm:text-[10px] font-bold text-muted-foreground uppercase tracking-widest bg-slate-100 px-1.5 sm:px-2 py-0.5 rounded">
+              <span className="text-[8px] sm:text-[10px] font-bold text-slate-700 uppercase tracking-widest bg-slate-200 px-1.5 sm:px-2 py-0.5 rounded">
                 {product.category}
               </span>
             )}
             {product.brand && (
-              <span className="text-[8px] sm:text-[10px] font-bold text-red-600 uppercase tracking-widest bg-red-50 px-1.5 sm:px-2 py-0.5 rounded">
+              <span className="text-[8px] sm:text-[10px] font-bold text-red-700 uppercase tracking-widest bg-red-100 px-1.5 sm:px-2 py-0.5 rounded">
                 {product.brand}
               </span>
             )}

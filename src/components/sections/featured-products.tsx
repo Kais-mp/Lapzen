@@ -72,7 +72,7 @@ export function ProductsSection({
             <div className="max-w-2xl">
               <h2 className="text-3xl md:text-4xl font-black text-primary mb-4 tracking-tight">
                 {titleWords.map((word, i) => (
-                  <span key={i} className={i === 1 ? "opacity-40" : ""}>{word} </span>
+                  <span key={i} className={i === 1 ? "opacity-80" : ""}>{word} </span>
                 ))}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">{description}</p>

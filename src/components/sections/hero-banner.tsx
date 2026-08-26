@@ -17,42 +17,19 @@ import Script from 'next/script';
 const HeroBanner = () => {
   const ModelViewer = 'model-viewer' as any;
   const [modelViewerLoaded, setModelViewerLoaded] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Use IntersectionObserver to detect when hero section is visible
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
       {/* 3D Model Viewer Script - lazy loaded */}
-      {isVisible && (
-        <Script
-          type="module"
-          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-          onLoad={() => setModelViewerLoaded(true)}
-        />
-      )}
+      <Script
+        type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
+        onLoad={() => setModelViewerLoaded(true)}
+      />
 
-      <section ref={sectionRef} className="relative w-full overflow-hidden min-h-[500px] lg:min-h-[600px] flex items-center pt-[116px] md:pt-0">
+      <section className="relative w-full overflow-hidden min-h-[500px] lg:min-h-[600px] flex items-center pt-[116px] md:pt-0">
         {/* Subtle radial glow specifically for hero */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
         
@@ -74,7 +51,7 @@ const HeroBanner = () => {
                     exposure="1.2"
                     interaction-prompt="auto"
                     loading="lazy"
-                    reveal="interaction"
+                    poster="/laptop_dell_xps_poster.png"
                     style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
                   />
                 ) : (
